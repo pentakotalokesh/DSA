@@ -1,27 +1,66 @@
 #include<stdio.h>
 #include<stdlib.h>
-struct linkedlist{
+struct node
+{
     int data;
-    struct linkedlist *next;
-};
- typedef struct linkedlist *node;
- int main()
- {
-     node p1,p2,p3;
-     p1=(node)malloc(sizeof(struct linkedlist));
-     p2=(node)malloc(sizeof(struct linkedlist));
-     p3=(node)malloc(sizeof(struct linkedlist));
-     p1->data=1;
-     p1->next=p2;
-     p2->data=2;
-     p2->next=p3;
-     p3->data=3;
-     p3->next=NULL;
-     printf("The data Part:%d\n",p1->data);
-     printf("The Adress part:%d\n",p1->next);
-     printf("The data Part of Second Node:%d\n",p2->data);
-     printf("The Adress part of Second Part:%d\n",p2->next);
-     printf("The data Part of Second Node:%d\n",p3->data);
-     printf("The Adress part of Second Part:%d\n",p3->next);
-     return 0;
- }
+    struct node *next;
+}*head;
+typedef struct node Node;
+Node *CreateNode(){
+    return (Node *)malloc(sizeof(Node));
+}
+void insertfirst(int Element)//Algorithm to Insert Element At FIRST
+{
+    Node *temp;
+    temp=CreateNode();
+    temp->data=Element;
+    if(head==NULL)
+    {
+        head=temp;
+        head->next=NULL;
+    }
+    else{
+        temp->next=head;
+        head=temp;
+    }
+}
+//Algorithm to Add Node at the LAST of List
+void insertlast(int Element)
+{
+    Node *temp,*current,*previous;
+    temp=CreateNode();
+    temp->data=Element;
+    current=head;
+    while (current!=NULL)
+    {
+        previous=current;
+        current=current->next;
+    }
+    if(current==head){
+        temp->next=NULL;
+        head=temp;
+    }
+    else{
+        previous->next=temp;
+        temp->next=current;
+    }
+    
+}
+void display(){
+    Node *temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d---> ",temp->data);
+        temp=temp->next;
+    }
+    printf("NULL\n");
+}
+int main()
+{
+    insertfirst(5);
+    insertfirst(6);
+    insertfirst(7);
+    display();
+    return 0;
+}
