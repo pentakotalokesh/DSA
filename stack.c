@@ -1,4 +1,4 @@
-#include<stdio.h.>
+#include<stdio.h>
 #include<stdlib.h>
 int top=-1;
 int push(int stack[],int n,int num)
