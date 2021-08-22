@@ -36,6 +36,7 @@ void Delete(int queue[])
     {
         queue[front]=0;
         front=front+1;
+        rear--;
         printf("\n Deletion Sucessfull");
     }
 }
